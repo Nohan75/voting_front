@@ -19,18 +19,20 @@ const ProposalList: React.FC<ProposalsListProps> = ({ proposals, onSelect, onVot
                     <li key={proposal.id} className="p-4 bg-white shadow rounded">
                         <h3 className="font-semibold text-gray-500">{proposal.title}</h3>
                         <div className="flex justify-between items-center mt-2">
-                            <button
-                                onClick={() => onVote(proposal.id, 'for')}
-                                className="px-4 py-2 bg-green-500 text-white rounded"
-                            >
-                                Pour
-                            </button>
-                            <button
-                                onClick={() => onVote(proposal.id, 'against')}
-                                className="px-4 py-2 bg-red-500 text-white rounded"
-                            >
-                                Contre
-                            </button>
+                            <div className={"flex gap-4"}>
+                                <button
+                                    onClick={() => onVote(proposal.id, 'for')}
+                                    className="px-4 py-2 bg-green-500 text-white rounded"
+                                >
+                                    Pour
+                                </button>
+                                <button
+                                    onClick={() => onVote(proposal.id, 'against')}
+                                    className="px-4 py-2 bg-red-500 text-white rounded"
+                                >
+                                    Contre
+                                </button>
+                            </div>
                             <button
                                 onClick={() => onSelect(proposal)}
                                 className="text-blue-500 underline"
