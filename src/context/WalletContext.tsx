@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, {createContext, useState, useContext, useEffect} from 'react';
 import { ethers } from 'ethers';
 
 // Définition du type du contexte
@@ -24,11 +24,16 @@ export const WalletProvider: React.FC<{ children: React.ReactNode }> = ({ childr
             await provider.send("eth_requestAccounts", []);
             const signer = await provider.getSigner();
 
+
             setUser(signer);
         } catch (error) {
             console.error("Erreur lors de la connexion :", error);
         }
     };
+
+    useEffect(() => {
+        connectUser();
+    }, []);
 
     return (
         <WalletContext.Provider value={{ user, connectUser }}>
