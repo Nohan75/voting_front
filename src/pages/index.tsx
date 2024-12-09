@@ -105,10 +105,6 @@ export default function Home() {
         }
     };
 
-    useEffect(() => {
-        console.log("Proposals:", proposals);
-    }, [proposals]);
-
     const addProposal = async (title: string, duration: number) => {
         if (proposalsContract) {
             const tx = await proposalsContract.createProposal(title, duration, {
@@ -158,6 +154,10 @@ export default function Home() {
         setSelectedProposal(proposal);
         await getProposalResults(proposal.contractAddress);
     }
+
+    setInterval(() => {
+        fetchProposals();
+    }, 30000);
 
     return (
         <div className="p-4 bg-gray-100 min-h-screen">
